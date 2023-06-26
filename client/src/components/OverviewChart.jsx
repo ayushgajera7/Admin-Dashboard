@@ -50,6 +50,11 @@ const OverviewChart = ({ isDashboard = false, view }) => {
     <ResponsiveLine
       data={view === "sales" ? totalSalesLine : totalUnitsLine}
       theme={{
+        labels: {
+          text: {
+            fontSize: 17, // Adjust the font size as desired
+          },
+        },
         axis: {
           domain: {
             line: {
@@ -73,11 +78,13 @@ const OverviewChart = ({ isDashboard = false, view }) => {
         },
         legends: {
           text: {
+            fontSize: 17,
             fill: theme.palette.secondary[200],
           },
         },
         tooltip: {
           container: {
+            fontSize: 15,
             color: theme.palette.primary.main,
           },
         },
