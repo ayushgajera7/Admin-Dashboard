@@ -13,6 +13,7 @@ import Daily from "scenes/daily";
 import Monthly from "scenes/monthly";
 import Overview from "scenes/overview";
 import Breakdown from "scenes/breakdown";
+import Admin from "scenes/admin";
 function App() {
   const mode = useSelector((state) => state.global.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
@@ -32,6 +33,7 @@ function App() {
               <Route path="/daily" element={<Daily />} />
               <Route path="/monthly" element={<Monthly />} />
               <Route path="/breakdown" element={<Breakdown />} />
+              <Route path="/admin" element={<Admin />} />
             </Route>
           </Routes>
         </ThemeProvider>
