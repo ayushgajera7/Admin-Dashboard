@@ -5,6 +5,7 @@ import {
   GridToolbarDensitySelector,
   GridToolbarContainer,
   GridToolbarExport,
+  GridToolbarFilterButton,
   GridToolbarColumnsButton,
 } from "@mui/x-data-grid";
 import FlexBetween from "./FlexBetween";
@@ -16,6 +17,7 @@ const DataGridCustomToolbar = ({ searchInput, setSearchInput, setSearch }) => {
         <FlexBetween>
           <GridToolbarColumnsButton />
           <GridToolbarDensitySelector />
+          <GridToolbarFilterButton />
           <GridToolbarExport />
         </FlexBetween>
         <TextField
