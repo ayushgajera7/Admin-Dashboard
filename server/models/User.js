@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {isEmail} from 'express-validator';
+// import {isEmail} from 'express-validator';
 
 const UserSchema = new mongoose.Schema(
   {
@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema(
       required: true,
       max: 50,
       unique: true,
-      validate: isEmail,
+      // validate: isEmail,
     },
     password: {
       type: String,
