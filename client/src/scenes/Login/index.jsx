@@ -4,11 +4,12 @@ import FlexBetween from "components/FlexBetween";
 import { Header } from "components/Header";
 import { Email, PointOfSale, PersonAdd, Traffic } from "@mui/icons-material";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios"
 
 const Login = () => {
-  const navigate = useHistory();
+  // const navigate = useHistory();
+  const navigate = useNavigate();
   const theme = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,18 +18,17 @@ const Login = () => {
     try{
       await axios.post("http://localhost:5001/login",{email,password})
       .then(res=>{
-        alert('success');
-          if(res.data==="exist"){
-             alert('logged in');
-            //  navigate.push('/dashboard');
-              return <Navigate to="/dashboard"/>;
+        console.log(res);
+          if(res.data==="exists"){
+             alert('Welcome to the Admin Dashboard');
+             navigate('/dashboard');
           }
-          else if(res.data==="notexist"){
-              alert("wrong details1")
+          else if(res.data==="notexists"){
+              alert("Enter valid Details")
           }
       })
       .catch(e=>{
-          alert("wrong details2")
+          alert("Enter valid Details")
           console.log(e);
       })
   }

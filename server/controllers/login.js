@@ -9,10 +9,10 @@ export const login = async (req, res) => {
       if (password === user.password) {
         res.status(200).json("exists");
       } else {
-        res.status(404).json("notexist");
+        res.status(404).json("notexists");
       }
     } else {
-      res.status(404).json("notexist");
+      res.status(404).json("notexists");
     }
   } catch (err) {
     res.status(500).json({err});
