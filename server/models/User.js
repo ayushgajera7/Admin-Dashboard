@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-// import {isEmail} from 'express-validator';
-
 const UserSchema = new mongoose.Schema(
   {
     name: {
@@ -14,7 +12,6 @@ const UserSchema = new mongoose.Schema(
       required: true,
       max: 50,
       unique: true,
-      // validate: isEmail,
     },
     password: {
       type: String,

@@ -4,29 +4,63 @@ import FlexBetween from "components/FlexBetween";
 import { Header } from "components/Header";
 import { Email, PointOfSale, PersonAdd, Traffic } from "@mui/icons-material";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import { Navigate } from "react-router-dom";
+import axios from "axios"
 
-const Login = (props) => {
+const Login = () => {
+  const navigate = useHistory();
   const theme = useTheme();
-  const [email, setemail] = useState("");
-  const [pass, setpass] = useState("");
-
-  const handlesubmit = (e) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(email);
+    try{
+      await axios.post("http://localhost:5001/login",{email,password})
+      .then(res=>{
+        alert('success');
+          if(res.data==="exist"){
+             alert('logged in');
+            //  navigate.push('/dashboard');
+              return <Navigate to="/dashboard"/>;
+          }
+          else if(res.data==="notexist"){
+              alert("wrong details1")
+          }
+      })
+      .catch(e=>{
+          alert("wrong details2")
+          console.log(e);
+      })
+  }
+  catch(e){
+      console.log(e);
+  }
   };
   return (
-    <div className='auth-form-container App'>
-    <Box className='border'>
-    <h2>Login</h2>
-    <form onSubmit={handlesubmit} className='login-form'>
-      <label htmlFor="email">Email</label>
-      <input value = {email} onChange={(e) => setemail(e.target.value)} type='email' placeholder='abc@gmail.com'></input>
-      <label htmlFor="password">Password</label>
-      <input value = {pass} onChange={(e) => setpass(e.target.value)} type='password' placeholder='******'></input>
-      <button className='button-form' type='submit'>login</button>
-    </form>
-    </Box>
-  </div>
+    <div className="auth-form-container App">
+      <Box className="border">
+        <h2>Login</h2>
+        <form method="post" onSubmit={handleSubmit} className="login-form">
+          <label htmlFor="email">Email</label>
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            type="email"
+            placeholder="abc@gmail.com"
+          />
+          <label htmlFor="password">Password</label>
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            placeholder="******"
+          />
+          <button className="button-form" type="submit">
+            Login
+          </button>
+        </form>
+      </Box>
+    </div>
   );
 };
 
